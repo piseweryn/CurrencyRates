@@ -1,5 +1,6 @@
-package com.seweryn.ratesapplication.data
+package com.seweryn.ratesapplication.data.remote
 
+import com.seweryn.ratesapplication.data.Currencies
 import com.seweryn.ratesapplication.data.model.CurrencyRate
 import com.seweryn.ratesapplication.data.model.RatesResponse
 
@@ -43,7 +44,7 @@ class RatesResponseParser {
                 val baseCurrency = response.baseCurrency.toUpperCase()
                 remove(find { it.currencyCode == baseCurrency })
 
-                add(0, CurrencyRate(baseCurrency, 1f))
+                add(0, CurrencyRate(baseCurrency, 1f, true))
 
             }
         }

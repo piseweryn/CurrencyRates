@@ -4,10 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp">
+
     <ImageView
         android:id="@+id/currency_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_eur_round"/>
 
     <LinearLayout
@@ -24,23 +25,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="17sp"
             tools:text="EUR"/>
 
         <TextView
             android:id="@+id/currency_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="15sp"
             tools:text="Euro"/>
     </LinearLayout>
 
-    <EditText
+    <com.seweryn.ratesapplication.ui.views.TextObservableEditText
         android:id="@+id/currency_input"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/currency_icon"
         android:layout_alignBottom="@id/currency_icon"
         android:layout_alignParentEnd="true"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.,"
         android:gravity="center_vertical"/>
 </RelativeLayout>

@@ -2,8 +2,6 @@ package com.seweryn.ratesapplication.di
 
 import com.seweryn.ratesapplication.data.Constants
 import com.seweryn.ratesapplication.data.remote.RatesApi
-import com.seweryn.ratesapplication.tools.network.NetworkConnectionInterceptor
-import com.seweryn.ratesapplication.utils.network.ConnectionManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,9 +15,7 @@ import javax.inject.Singleton
 class NetworkModule  {
     @Provides
     @Singleton
-    fun provideOkHttpClient(connectionManager: ConnectionManager): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(NetworkConnectionInterceptor(connectionManager))
-        .build()
+    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder().build()
 
     @Provides
     @Singleton

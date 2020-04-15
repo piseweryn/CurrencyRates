@@ -6,11 +6,13 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
 
-open class BaseViewModel(private val schedulerProvider: SchedulerProvider) : ViewModel() {
+abstract class BaseViewModel(private val schedulerProvider: SchedulerProvider) : ViewModel() {
 
     private val subscriptions = CompositeDisposable()
 
-    fun onDestroy() = clearSubscriptions()
+    abstract fun start()
+
+    fun stop() = clearSubscriptions()
 
     protected fun clearSubscriptions() = subscriptions.clear()
 
@@ -23,7 +25,7 @@ open class BaseViewModel(private val schedulerProvider: SchedulerProvider) : Vie
     ) {
         subscriptions.add(
             command.subscribeOn(schedulerProvider.ioScheduler())
-                .observeOn(schedulerProvider.uiScheduler(), true)
+                .observeOn(schedulerProvider.uiScheduler())
                 .repeatWhen { completed -> completed.delay(intervalInSeconds, TimeUnit.SECONDS) }
                 .subscribe(
                     { result -> onNext.invoke(result) },
